@@ -11,10 +11,11 @@
     <h1>Number Guessing Game</h1>
     <p>Guess a number between 1 and 100!</p>
     <p id="attempts-remaining">You have 10 attempts remaining.</p>
-    <input type="number" id="user-guess" placeholder="Enter your guess" min="1" max="100">
+    <input type="number" id="user-guess" placeholder="Enter your guess" autofocus min="1" max="100">
     <button id="submit-guess">Submit Guess</button>
     <p id="feedback"></p>
     <p id="game-over" class="hidden"></p>
+    <p id="spacebar-hint" class="hidden">Press Spacebar to restart the game!</p>
     <button id="restart-game" class="hidden">Restart Game</button>
   </div>
   <script src="script.js"></script>

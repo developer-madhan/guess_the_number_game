@@ -42,6 +42,7 @@ function handleGuess() {
     gameOverMessage.classList.remove("hidden");
     submitButton.disabled = true;
     restartButton.classList.remove("hidden");
+    enableSpacebarRestart();
     return;
   }
 
@@ -53,6 +54,7 @@ function handleGuess() {
     gameOverMessage.classList.remove("hidden");
     submitButton.disabled = true;
     restartButton.classList.remove("hidden");
+    enableSpacebarRestart();
   }
 
   userInput.value = ""; // Clear the input field
@@ -61,7 +63,7 @@ function handleGuess() {
 // Add event listener for the button click
 submitButton.addEventListener("click", handleGuess);
 
-// Add event listener for the "Enter" key press
+// Add event listener for the "Enter" key press during gameplay
 userInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     handleGuess();
@@ -69,7 +71,7 @@ userInput.addEventListener("keydown", (event) => {
 });
 
 // Restart game logic
-restartButton.addEventListener("click", () => {
+function restartGame() {
   randomNumber = Math.floor(Math.random() * 100) + 1;
   attempts = 0;
   feedback.textContent = "";
@@ -80,4 +82,26 @@ restartButton.addEventListener("click", () => {
   submitButton.disabled = false;
   restartButton.classList.add("hidden");
   userInput.value = "";
-});
+  disableSpacebarRestart();
+}
+
+// Enable restarting the game with the Spacebar
+function enableSpacebarRestart() {
+  document.addEventListener("keydown", restartOnSpacebar);
+}
+
+// Disable restarting the game with the Spacebar
+function disableSpacebarRestart() {
+  document.removeEventListener("keydown", restartOnSpacebar);
+}
+
+// Function to handle restart on Spacebar press
+function restartOnSpacebar(event) {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent scrolling on Spacebar press
+    restartGame();
+  }
+}
+
+// Add event listener for the restart button click
+restartButton.addEventListener("click", restartGame);
