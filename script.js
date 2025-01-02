@@ -9,7 +9,8 @@ const attemptsRemaining = document.getElementById("attempts-remaining");
 const gameOverMessage = document.getElementById("game-over");
 const restartButton = document.getElementById("restart-game");
 
-submitButton.addEventListener("click", () => {
+// Function to handle the guess
+function handleGuess() {
   const userGuess = parseInt(userInput.value);
 
   if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
@@ -53,8 +54,21 @@ submitButton.addEventListener("click", () => {
     submitButton.disabled = true;
     restartButton.classList.remove("hidden");
   }
+
+  userInput.value = ""; // Clear the input field
+}
+
+// Add event listener for the button click
+submitButton.addEventListener("click", handleGuess);
+
+// Add event listener for the "Enter" key press
+userInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    handleGuess();
+  }
 });
 
+// Restart game logic
 restartButton.addEventListener("click", () => {
   randomNumber = Math.floor(Math.random() * 100) + 1;
   attempts = 0;
