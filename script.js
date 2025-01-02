@@ -8,6 +8,7 @@ const feedback = document.getElementById("feedback");
 const attemptsRemaining = document.getElementById("attempts-remaining");
 const gameOverMessage = document.getElementById("game-over");
 const restartButton = document.getElementById("restart-game");
+const spacebarHint = document.getElementById("spacebar-hint");
 
 // Function to handle the guess
 function handleGuess() {
@@ -40,6 +41,7 @@ function handleGuess() {
     feedback.style.color = "green";
     gameOverMessage.textContent = "You win!";
     gameOverMessage.classList.remove("hidden");
+    spacebarHint.classList.remove("hidden"); // Show Spacebar hint
     submitButton.disabled = true;
     restartButton.classList.remove("hidden");
     enableSpacebarRestart();
@@ -52,6 +54,7 @@ function handleGuess() {
     feedback.textContent = `❌ Game over! The correct number was ${randomNumber}.`;
     gameOverMessage.textContent = "You lose!";
     gameOverMessage.classList.remove("hidden");
+    spacebarHint.classList.remove("hidden"); // Show Spacebar hint
     submitButton.disabled = true;
     restartButton.classList.remove("hidden");
     enableSpacebarRestart();
@@ -79,6 +82,7 @@ function restartGame() {
   attemptsRemaining.textContent = "You have 10 attempts remaining.";
   gameOverMessage.textContent = "";
   gameOverMessage.classList.add("hidden");
+  spacebarHint.classList.add("hidden"); // Hide Spacebar hint
   submitButton.disabled = false;
   restartButton.classList.add("hidden");
   userInput.value = "";
