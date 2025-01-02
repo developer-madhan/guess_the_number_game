@@ -15,7 +15,7 @@ print(f"Guess the number between {start} and {end}! You have {max_attempts} atte
 
 while attempts < max_attempts:
     try:
-        user_guess = int(input("Enter your guess: "))
+        user_guess = int(input(f"Attempt {attempts + 1}/{max_attempts} - Enter your guess: "))
         attempts += 1
 
         if user_guess < random_number:
@@ -31,9 +31,13 @@ while attempts < max_attempts:
             else:
                 print("The number is low!")
         else:
-            print(f"Congratulations! You guessed the number {random_number} in {attempts} attempts.")
+            print(f"🎉 Congratulations! You guessed the number {random_number} in {attempts} attempts.")
             break
+
+        print(f"You have {max_attempts - attempts} attempts remaining.\n")
+
     except ValueError:
         print("Please enter a valid number.")
-else:
-    print(f"Game over! You've used all {max_attempts} attempts. The correct number was {random_number}.")
+
+if attempts == max_attempts and user_guess != random_number:
+    print(f"❌ Game over! You've used all {max_attempts} attempts. The correct number was {random_number}.")
